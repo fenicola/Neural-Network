@@ -56,6 +56,25 @@ Models are not evaluated solely on accuracy or AUC, but through business-oriente
 - **ROC curve and AUC** for each network
 - **Automatic cut-off optimization** across the range 0.01 – 0.45
 
+## Results
+
+With the cut-off optimised separately for each network (test set, 295 companies):
+
+| Network | Hidden layers | Cut-off | Accuracy | AUC | Expected Income | Efficiency | Balancing spread |
+|---|---|---|---|---|---|---|---|
+| **Net 1** | `c(2)` | 0.02 | 66.8% | 0.670 | **3.90** | **65.8%** | **2.80%** |
+| Net 4 | `c(17, 8, 5, 4, 1)` | 0.21 | 82.4% | 0.634 | 3.00 | 62.4% | 3.70% |
+| Net 2 | `c(3, 1)` | 0.25 | 86.4% | 0.736 | 2.80 | 61.7% | 3.86% |
+| Net 3 | `c(4, 2)` | 0.06 | 85.4% | 0.662 | 1.85 | 58.2% | 4.24% |
+
+**The most accurate model is not the most profitable one.** Net 1, the simplest architecture, has the lowest accuracy but the highest Expected Income and the lowest break-even spread: its very low cut-off rejects more borderline applicants, and because a missed default costs far more than a lost good client (LGD 45% vs a 5% margin), avoiding false negatives pays off. Net 2 has the best AUC, so it ranks companies best overall, but at its optimal cut-off it accepts more defaults.
+
+![Accuracy vs Expected Income for the four networks: Net 1 is the least accurate but the most profitable.](images/accuracy_vs_expected_income.png)
+*Accuracy vs Expected Income for the four networks: Net 1 is the least accurate but the most profitable.*
+
+![ROC curves of the four networks on the test set.](images/roc_curves.png)
+*ROC curves of the four networks on the test set.*
+
 ---
 
 ## Requirements
