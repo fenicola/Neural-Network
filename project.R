@@ -542,14 +542,13 @@ roc2 <- roc(test_nn$Default, prob2)
 roc3 <- roc(test_nn$Default, prob3)
 roc4 <- roc(test_nn$Default, prob4)
 
-plot(roc1, col = "steelblue",  lwd = 2,
+plot(roc1, col = "steelblue",  lwd = 2, legacy.axes = TRUE,
      main = "Curva ROC — Confronto 4 Reti Neurali",
      xlab = "False Positive Rate (1 - Specificità)",
      ylab = "True Positive Rate (Sensibilità)")
 lines(roc2, col = "firebrick",   lwd = 2)
 lines(roc3, col = "darkgreen",   lwd = 2)
 lines(roc4, col = "darkorange",  lwd = 2)
-abline(a = 0, b = 1, lty = 2, col = "gray60")
 legend("bottomright",
        legend = c(
          paste0("Rete 1 c(2)         AUC = ", round(auc(roc1), 3)),
